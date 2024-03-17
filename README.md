@@ -7,7 +7,7 @@
 
 - Java 17
 - Spring Boot 3
-- Elasticsearch
+- PostgreSQL
 - Apache Kafka
 - Maven
 - Docker

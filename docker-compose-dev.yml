@@ -1,23 +1,22 @@
 version: '3.8'
 services:
-  project-service-elasticsearch:
-    image: elasticsearch:7.10.1
-    container_name: project-service-elasticsearch
+  project-service-db:
+    image: "postgres:latest"
+    container_name: project-service-db
+    restart: unless-stopped
     environment:
-      - discovery.type=single-node
-      - node.name=odfe-node
-      - discovery.seed_hosts=odfe-node
-      - bootstrap.memory_lock=true
-      - xpack.security.enabled=false
-      - "ES_JAVA_OPTS=-Xms4096m -Xmx4096m"
-    volumes:
-      - elasticsearch_data:/usr/share/elasticsearch/data
+      POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: db
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -d db" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
     ports:
-      - "19200:9200"
-      - "19600:9600"
-    networks:
-      - project-service-net
+      - "25432:5432"
+    volumes:
+      - project-service-db-data:/var/lib/postgresql/data
 volumes:
-  elasticsearch_data:
-networks:
-  project-service-net:
+  project-service-db-data:
