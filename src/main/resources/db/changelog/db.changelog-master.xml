@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="DDL-000" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/000-create-projects-table.sql" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="DDL-001" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/001-create-tags-table.sql" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="DDL-002" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/002-create-tag-project-table.sql" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="DDL-003" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/003-create-like-project-table.sql" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="DDL-004" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/004-create-tree-table.sql" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="DDL-005" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/005-create-project-tree-table.sql" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="DDL-006" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/006-create-project-trigger.sql" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="DDL-007" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/007-alter-project-tree-add-primary-key.sql" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="DDL-008" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/008-alter-project-tree-add-unique.sql" splitStatements="false"/>
+    </changeSet>
+</databaseChangeLog>
