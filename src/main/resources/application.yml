@@ -1,0 +1,25 @@
+server:
+  port: 18082
+  servlet:
+    context-path: /projects
+spring:
+  application:
+    name: project-service
+  datasource:
+    url: jdbc:postgresql://localhost:15432/db
+    username: user
+    password: password
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    url: jdbc:postgresql://localhost:15432/db
+    user: user
+    password: password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    path: /api-docs
