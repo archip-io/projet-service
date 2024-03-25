@@ -24,4 +24,10 @@
     <changeSet id="DDL-006" author="YanichChe">
         <sqlFile path="db/changelog/DDL/006-create-project-trigger.sql" splitStatements="false"/>
     </changeSet>
+    <changeSet id="DDL-007" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/007-alter-project-tree-add-primary-key.sql" splitStatements="false"/>
+    </changeSet>
+    <changeSet id="DDL-008" author="YanichChe">
+        <sqlFile path="db/changelog/DDL/008-alter-project-tree-add-unique.sql" splitStatements="false"/>
+    </changeSet>
 </databaseChangeLog>
