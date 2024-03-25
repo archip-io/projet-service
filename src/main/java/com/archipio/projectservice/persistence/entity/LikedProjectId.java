@@ -2,10 +2,8 @@ package com.archipio.projectservice.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.*;
-
 import java.io.Serializable;
-
+import lombok.*;
 
 @Getter
 @Setter
@@ -15,9 +13,8 @@ import java.io.Serializable;
 @Embeddable
 public class LikedProjectId implements Serializable {
 
-    private String username;
+  private String username;
 
-    @Column(name = "project_id")
-    private Long projectId;
-
+  @Column(name = "project_id")
+  private Long projectId;
 }

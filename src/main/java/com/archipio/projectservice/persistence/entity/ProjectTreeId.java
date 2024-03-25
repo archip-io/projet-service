@@ -2,10 +2,9 @@ package com.archipio.projectservice.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import lombok.*;
-
 import java.io.Serializable;
 import java.util.UUID;
+import lombok.*;
 
 @Getter
 @Setter
@@ -15,9 +14,9 @@ import java.util.UUID;
 @Embeddable
 public class ProjectTreeId implements Serializable {
 
-    @Column(name = "project_id")
-    private Long projectId;
+  @Column(name = "project_id")
+  private Long projectId;
 
-    @Column(name = "tree_id")
-    private UUID treeId;
+  @Column(name = "tree_id")
+  private UUID treeId;
 }

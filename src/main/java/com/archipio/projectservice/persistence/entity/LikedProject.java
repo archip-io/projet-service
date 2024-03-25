@@ -19,12 +19,10 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "liked_projects")
 public class LikedProject {
-    @EmbeddedId
-    private LikedProjectId id;
+  @EmbeddedId private LikedProjectId id;
 
-    @MapsId("projectId")
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
-
+  @MapsId("projectId")
+  @ManyToOne
+  @JoinColumn(name = "project_id")
+  private Project project;
 }
