@@ -1,7 +1,7 @@
 package com.archipio.projectservice.persistence.entity;
 
-import com.archipio.projectservice.persistence.entity.core.Project;
 import com.archipio.projectservice.persistence.entity.core.Node;
+import com.archipio.projectservice.persistence.entity.core.Project;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -21,17 +21,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "project_tree")
 public class ProjectTree {
-    @EmbeddedId
-    private ProjectTreeId id;
+  @EmbeddedId private ProjectTreeId id;
 
-    @MapsId("projectId")
-    @OneToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
+  @MapsId("projectId")
+  @OneToOne
+  @JoinColumn(name = "project_id")
+  private Project project;
 
-    @MapsId("treeId")
-    @ManyToOne
-    @JoinColumn(name = "tree_id")
-    private Node node;
-
+  @MapsId("treeId")
+  @ManyToOne
+  @JoinColumn(name = "tree_id")
+  private Node node;
 }

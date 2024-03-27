@@ -20,17 +20,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "projects_tags")
 public class ProjectsTag {
-    @EmbeddedId
-    private ProjectsTagId id;
+  @EmbeddedId private ProjectsTagId id;
 
-    @MapsId("tagId")
-    @ManyToOne
-    @JoinColumn(name = "tag_id")
-    private Tag tag;
+  @MapsId("tagId")
+  @ManyToOne
+  @JoinColumn(name = "tag_id")
+  private Tag tag;
 
-    @MapsId("projectId")
-    @ManyToOne
-    @JoinColumn(name = "project_id")
-    private Project project;
-
+  @MapsId("projectId")
+  @ManyToOne
+  @JoinColumn(name = "project_id")
+  private Project project;
 }
