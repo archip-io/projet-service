@@ -41,6 +41,10 @@ public class Project {
       inverseJoinColumns = @JoinColumn(name = "tree_id"))
   private Set<Node> nodes = new LinkedHashSet<>();
 
-  @ManyToMany(mappedBy = "projects")
+  @ManyToMany(cascade = CascadeType.PERSIST)
+  @JoinTable(
+      name = "projects_tags",
+      joinColumns = @JoinColumn(name = "project_id"),
+      inverseJoinColumns = @JoinColumn(name = "tag_id"))
   private Set<Tag> tags = new LinkedHashSet<>();
 }

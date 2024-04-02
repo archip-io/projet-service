@@ -1,7 +1,7 @@
 create function create_tree_project_after_create_project()
     returns trigger as $$
 declare
-    treeid integer;
+    treeid uuid;
 begin
     insert into tree (file_name, parent_id) values (NEW.project_name, null) returning id into treeid;
     insert into project_tree (project_id, tree_id) values (NEW.id, treeid);
