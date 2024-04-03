@@ -1,7 +1,5 @@
 server:
   port: 18082
-  servlet:
-    context-path: /projects
 spring:
   application:
     name: project-service

@@ -1,5 +1,5 @@
 create table if not exists tree (
-    id uuid primary key,
+    id uuid default gen_random_uuid() PRIMARY KEY,
     file_name varchar(255) not null,
     file_id varchar(255),
     parent_id uuid references tree(id) on delete cascade

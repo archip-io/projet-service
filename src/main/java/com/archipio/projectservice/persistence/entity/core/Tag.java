@@ -21,10 +21,6 @@ public class Tag {
 
   private String tag;
 
-  @ManyToMany
-  @JoinTable(
-      name = "projects_tags",
-      joinColumns = @JoinColumn(name = "project_id"),
-      inverseJoinColumns = @JoinColumn(name = "tag_id"))
+  @ManyToMany(mappedBy = "tags")
   private Set<Project> projects = new LinkedHashSet<>();
 }
