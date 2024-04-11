@@ -3,7 +3,10 @@ package com.archipio.projectservice.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Set;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /** DTO for {@link com.archipio.projectservice.persistence.entity.core.Project} */
 @Data
@@ -12,15 +15,15 @@ import lombok.*;
 @Builder
 public class ProjectOutputDto implements Serializable {
   @JsonProperty("owner_username")
-  String ownerUsername;
+  private String ownerUsername;
 
   @JsonProperty("project_name")
-  String projectName;
+  private String projectName;
 
-  String description;
+  private String description;
 
   @JsonProperty("is_private")
-  Boolean isPrivate;
+  private Boolean isPrivate;
 
-  Set<String> tags;
+  private Set<String> tags;
 }

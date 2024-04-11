@@ -2,6 +2,7 @@ package com.archipio.projectservice.service;
 
 import com.archipio.projectservice.dto.CreateProjectDto;
 import com.archipio.projectservice.dto.ProjectOutputDto;
+import com.archipio.projectservice.dto.UpdateProjectDto;
 import lombok.NonNull;
 
 public interface ProjectService {
@@ -14,4 +15,17 @@ public interface ProjectService {
    */
   ProjectOutputDto createProject(
       @NonNull CreateProjectDto createProjectDto, @NonNull String ownerName);
+
+  /**
+   * Редактирование проекта.
+   *
+   * @param updateProjectDto дто проекта
+   * @param ownerName ник пользователя
+   * @param oldProjectName старое название проекта
+   * @return обновленный проект
+   */
+  ProjectOutputDto updateProject(
+      @NonNull UpdateProjectDto updateProjectDto,
+      @NonNull String ownerName,
+      @NonNull String oldProjectName);
 }
