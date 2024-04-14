@@ -5,7 +5,6 @@ import static com.archipio.projectservice.util.ValidationUtils.MIN_PROJECT_NAME_
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.AllArgsConstructor;
@@ -19,8 +18,7 @@ import org.hibernate.validator.constraints.Length;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateProjectDto implements Serializable {
-
+public class UpdateProjectDto {
   @JsonProperty("project_name")
   @NotNull(message = "{validation.projectname.not-null}")
   @Length(
