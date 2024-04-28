@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -46,5 +47,14 @@ public class ProjectController {
         .body(
             projectService.updateProject(
                 updateProjectDto, principal.getUsername(), oldProjectName));
+  }
+
+  @PreAuthorize("hasAuthority('DELETE_PROJECT')")
+  @DeleteMapping("/{projectName}")
+  public ResponseEntity<Object> deleteProject(
+      @AuthenticationPrincipal UserDetailsImpl principal, @PathVariable String projectName) {
+
+    projectService.deleteProject(projectName, principal.getUsername());
+    return ResponseEntity.status(OK).build();
   }
 }
