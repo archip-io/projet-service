@@ -258,4 +258,36 @@ class ProjectServiceImplTest {
         .isThrownBy(
             () -> projectService.updateProject(updateProjectDto, ownerUsername, projectName));
   }
+
+  @Test
+  void deleteProject_thenProjectExist_thenDelete() {
+    final var ownerUsername = "yana";
+    final var projectName = "pisyapopa";
+    Project project = new Project();
+
+    when(projectRepository.findByOwnerUsernameAndProjectName(ownerUsername, projectName))
+            .thenReturn(Optional.of(project));
+
+    //do
+    projectService.deleteProject(ownerUsername, projectName);
+
+    // check
+    verify(projectRepository, times(1)).delete(project);
+  }
+
+
+  @Test
+  void deleteProject_thenProjectNotExist_thenThrownNotSuchProjectException() {
+    // prepare
+    final var ownerUsername = "yana";
+    final var projectName = "pisyapopa";
+
+    when(projectRepository.findByOwnerUsernameAndProjectName(ownerUsername, projectName))
+            .thenReturn(Optional.empty());
+
+    // check
+    assertThatExceptionOfType(NotSuchProjectException.class)
+            .isThrownBy(
+                    () -> projectService.deleteProject(ownerUsername, projectName));
+  }
 }

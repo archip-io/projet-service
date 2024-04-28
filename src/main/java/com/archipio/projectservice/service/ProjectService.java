@@ -28,4 +28,13 @@ public interface ProjectService {
       @NonNull UpdateProjectDto updateProjectDto,
       @NonNull String ownerName,
       @NonNull String oldProjectName);
+
+/**
+ * Удаление проекта.
+ * @param ownerName ник пользователя
+ * @param projectName название проекта
+*/
+  void deleteProject(
+          @NonNull String ownerName,
+          @NonNull String projectName);
 }

@@ -70,6 +70,16 @@ public class ProjectServiceImpl implements ProjectService {
     return projectMapper.toOutputDto(projectDB);
   }
 
+  @Override
+  public void deleteProject(@NonNull String ownerName, @NonNull String projectName) {
+    Project projectDB =
+        projectRepository
+            .findByOwnerUsernameAndProjectName(ownerName, projectName)
+            .orElseThrow(NotSuchProjectException::new);
+
+    projectRepository.delete(projectDB);
+  }
+
   private Set<Tag> convertTags(@NonNull Set<String> tags) {
     return tags.stream()
         .map(
