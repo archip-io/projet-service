@@ -5,6 +5,9 @@ import com.archipio.projectservice.dto.ProjectOutputDto;
 import com.archipio.projectservice.dto.UpdateProjectDto;
 import lombok.NonNull;
 
+import java.util.List;
+import java.util.Map;
+
 public interface ProjectService {
   /**
    * Создание проекта.
@@ -29,12 +32,22 @@ public interface ProjectService {
       @NonNull String ownerName,
       @NonNull String oldProjectName);
 
+  /**
+   * Удаление проекта.
+   *
+   * @param ownerName ник пользователя
+   * @param projectName название проекта
+   */
+  void deleteProject(@NonNull String ownerName, @NonNull String projectName);
+
 /**
- * Удаление проекта.
- * @param ownerName ник пользователя
- * @param projectName название проекта
+ * Возвращает все проекты по фильтрам и с заданной сортировкой
+ *
+ * @param filters Фильтры
+ * @param sorts Поля сортировки
+ * @param page Страница
+ * @param size Размер страниуы
+ * @return Отфитрованный проекты
 */
-  void deleteProject(
-          @NonNull String ownerName,
-          @NonNull String projectName);
+  List<ProjectOutputDto> getAllFiltered(Map<String, String> filters, List<String> sorts, int page, int size);
 }

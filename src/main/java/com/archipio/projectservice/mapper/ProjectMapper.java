@@ -5,10 +5,13 @@ import com.archipio.projectservice.dto.ProjectOutputDto;
 import com.archipio.projectservice.dto.UpdateProjectDto;
 import com.archipio.projectservice.persistence.entity.core.Project;
 import com.archipio.projectservice.persistence.entity.core.Tag;
+
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 import lombok.NonNull;
 import org.mapstruct.InheritConfiguration;
+import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingConstants;
@@ -35,4 +38,12 @@ public interface ProjectMapper {
 
   @Mapping(target = "tags", source = "tags", qualifiedByName = "convertTagsToStrings")
   ProjectOutputDto toOutputDto(Project template);
+
+  @IterableMapping(qualifiedByName = "toOutputDto")
+  List<ProjectOutputDto> toOutputDtoList(List<Project> templates);
+
+  @Named("toOutputDto")
+  default ProjectOutputDto toOutputDtoElement(Project project) {
+    return toOutputDto(project);
+  }
 }

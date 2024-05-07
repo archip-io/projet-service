@@ -11,6 +11,9 @@ import com.archipio.projectservice.persistence.entity.core.Tag;
 import com.archipio.projectservice.persistence.repository.ProjectRepository;
 import com.archipio.projectservice.persistence.repository.TagRepository;
 import com.archipio.projectservice.service.ProjectService;
+
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,11 +23,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import static com.archipio.projectservice.util.SpecPageSortUtils.generatePageable;
+import static com.archipio.projectservice.util.SpecPageSortUtils.generateProjectSpec;
+import static com.archipio.projectservice.util.SpecPageSortUtils.generateSort;
+
 @Slf4j
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class ProjectServiceImpl implements ProjectService {
+  private static final List<String> availableSortFields = List.of("projectNameAsc", "projectNameDesc");
   private final ProjectRepository projectRepository;
   private final ProjectMapper projectMapper;
   private final TagRepository tagRepository;
@@ -78,6 +86,15 @@ public class ProjectServiceImpl implements ProjectService {
             .orElseThrow(NotSuchProjectException::new);
 
     projectRepository.delete(projectDB);
+  }
+
+  @Override
+  public List<ProjectOutputDto> getAllFiltered(
+      Map<String, String> filters, List<String> sorts, int page, int pageSize) {
+    var sort = generateSort(sorts, availableSortFields);
+    var pageable = generatePageable(page, pageSize, sort);
+    var spec = generateProjectSpec(filters);
+    return projectMapper.toOutputDtoList(projectRepository.findAll(spec, pageable, sort));
   }
 
   private Set<Tag> convertTags(@NonNull Set<String> tags) {
